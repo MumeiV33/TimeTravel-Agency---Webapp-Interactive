@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body style="padding: 50px;">
+    <h1 style="color: #d4af37;">Test du Modal</h1>
+    
+    <div class="destination-card" data-destination="paris" style="max-width: 400px; margin: 20px 0;">
+        <div class="card-image">
+            <div class="card-icon">🗼</div>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">Paris 1889</h3>
+            <p class="card-era">Belle Époque</p>
+            <button class="card-button">Explorer</button>
+        </div>
+    </div>
+
+    <div id="destination-modal" class="destination-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-era" id="modal-era"></p>
+                <div class="modal-details">
+                    <div class="modal-detail-item">
+                        <span class="modal-icon">⏱️</span>
+                        <span id="modal-duration"></span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <span class="modal-icon">👥</span>
+                        <span id="modal-capacity"></span>
+                    </div>
+                    <div class="modal-detail-item">
+                        <span class="modal-icon">💰</span>
+                        <span id="modal-price"></span>
+                    </div>
+                </div>
+                <p class="modal-description" id="modal-description"></p>
+                <div class="modal-highlights">
+                    <h3>Points forts</h3>
+                    <ul id="modal-highlights"></ul>
+                </div>
+                <button class="modal-reserve-btn" id="modal-reserve-btn">Réserver cette destination</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('Script chargé');
+        
+        // Données
+        const destinationsData = {
+            paris: {
+                title: 'Paris 1889',
+                era: 'Belle Époque',
+                duration: '5 jours',
+                capacity: 'Max 8 personnes',
+                price: '50 000€ / personne',
+                description: 'Assistez à l\'inauguration de la Tour Eiffel lors de l\'Exposition Universelle.',
+                highlights: [
+                    '🗼 Inauguration de la Tour Eiffel',
+                    '🎨 Visite des ateliers impressionnistes',
+                    '🍷 Dîner Belle Époque au Moulin Rouge',
+                    '🚂 Trajet en Orient Express reconstitué'
+                ]
+            }
+        };
+
+        const destinationCard = document.querySelector('.destination-card');
+        const button = document.querySelector('.card-button');
+        const modal = document.getElementById('destination-modal');
+        const closeBtn = document.getElementById('modal-close');
+        
+        console.log('Card:', destinationCard);
+        console.log('Button:', button);
+        console.log('Modal:', modal);
+        
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Bouton cliqué!');
+            const destination = destinationCard.dataset.destination;
+            console.log('Destination:', destination);
+            openDestinationModal(destination);
+        });
+        
+        function openDestinationModal(destination) {
+            console.log('openDestinationModal appelé avec:', destination);
+            const data = destinationsData[destination];
+            if (!data) {
+                console.error('Pas de données pour:', destination);
+                return;
+            }
+            
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-era').textContent = data.era;
+            document.getElementById('modal-duration').textContent = data.duration;
+            document.getElementById('modal-capacity').textContent = data.capacity;
+            document.getElementById('modal-price').textContent = data.price;
+            document.getElementById('modal-description').textContent = data.description;
+            
+            const highlightsList = document.getElementById('modal-highlights');
+            highlightsList.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+            
+            modal.classList.add('active');
+            console.log('Modal ouvert, classe active ajoutée');
+        }
+        
+        function closeDestinationModal() {
+            modal.classList.remove('active');
+            console.log('Modal fermé');
+        }
+        
+        closeBtn.addEventListener('click', closeDestinationModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeDestinationModal();
+            }
+        });
+    </script>
+</body>
+</html>

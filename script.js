@@ -1,9 +1,45 @@
+// ===== Accessibility Features =====
+// High Contrast Mode Toggle
+const accessibilityToggle = document.getElementById('accessibility-toggle');
+const ariaAnnouncements = document.getElementById('aria-announcements');
+
+// Check for saved preference
+const isHighContrast = localStorage.getItem('highContrast') === 'true';
+if (isHighContrast) {
+    document.body.classList.add('high-contrast');
+    accessibilityToggle.setAttribute('aria-pressed', 'true');
+    accessibilityToggle.setAttribute('aria-label', 'Désactiver le mode contraste élevé');
+}
+
+accessibilityToggle.addEventListener('click', function() {
+    const isActive = document.body.classList.toggle('high-contrast');
+    
+    // Update ARIA attributes
+    this.setAttribute('aria-pressed', isActive);
+    this.setAttribute('aria-label', isActive ? 'Désactiver le mode contraste élevé' : 'Activer le mode contraste élevé');
+    
+    // Save preference
+    localStorage.setItem('highContrast', isActive);
+    
+    // Announce to screen readers
+    const message = isActive ? 'Mode contraste élevé activé' : 'Mode contraste élevé désactivé';
+    ariaAnnouncements.textContent = message;
+    
+    // Clear announcement after 3 seconds
+    setTimeout(() => {
+        ariaAnnouncements.textContent = '';
+    }, 3000);
+});
+
 // ===== Navigation Smooth Scroll =====
 document.querySelectorAll('.nav a, .cta-button').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href')?.startsWith('#')) {
+        const href = this.getAttribute('href');
+        
+        // Si c'est un lien avec href qui commence par #
+        if (href?.startsWith('#')) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
+            const targetId = href;
             const targetSection = targetId === '#' ? 
                 document.querySelector('.destinations') : 
                 document.querySelector(targetId);
@@ -15,19 +51,82 @@ document.querySelectorAll('.nav a, .cta-button').forEach(anchor => {
                 });
             }
         }
+        // Si c'est un bouton sans href (comme .cta-button), scroller vers destinations
+        else if (this.classList.contains('cta-button')) {
+            e.preventDefault();
+            const destinationsSection = document.querySelector('.destinations');
+            if (destinationsSection) {
+                destinationsSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
     });
 });
 
 // ===== Destination Cards Interaction =====
 const destinationCards = document.querySelectorAll('.destination-card');
+const destinationModal = document.getElementById('destination-modal');
+const modalClose = document.getElementById('modal-close');
+
+// Données des destinations
+const destinationsData = {
+    paris: {
+        title: 'Paris 1889',
+        era: 'Belle Époque',
+        duration: '5 jours',
+        capacity: 'Max 8 personnes',
+        price: '50 000€ / personne',
+        description: 'Assistez à l\'inauguration de la Tour Eiffel lors de l\'Exposition Universelle. Promenez-vous dans les rues pavées de Montmartre et rencontrez les impressionnistes dans leurs ateliers parisiens.',
+        highlights: [
+            '🗼 Inauguration de la Tour Eiffel',
+            '🎨 Visite des ateliers impressionnistes',
+            '🍷 Dîner Belle Époque au Moulin Rouge',
+            '🚂 Trajet en Orient Express reconstitué'
+        ]
+    },
+    cretaceous: {
+        title: 'Période Crétacé',
+        era: '-66 Millions d\'années',
+        duration: '7 jours',
+        capacity: 'Max 6 personnes',
+        price: '120 000€ / personne',
+        description: 'Observez les dinosaures dans leur habitat naturel depuis nos capsules de protection invisibles. Admirez les Tyrannosaures, Tricératops et autres géants préhistoriques en toute sécurité.',
+        highlights: [
+            '🦕 Observation de Tyrannosaures et Tricératops',
+            '🛡️ Capsule de protection invisible',
+            '🌋 Témoins de l\'ère des géants',
+            '📸 Photos et vidéos 8K incluses'
+        ]
+    },
+    florence: {
+        title: 'Florence 1504',
+        era: 'Renaissance Italienne',
+        duration: '6 jours',
+        capacity: 'Max 10 personnes',
+        price: '75 000€ / personne',
+        description: 'Rencontrez Michel-Ange alors qu\'il sculpte le David et Léonard de Vinci travaillant sur La Joconde. Découvrez l\'effervescence artistique et intellectuelle de la Renaissance à son apogée.',
+        highlights: [
+            '🎨 Rencontre avec Michel-Ange et Léonard',
+            '🏛️ Visite privée de Florence Renaissance',
+            '🍝 Banquets de la famille Médicis',
+            '📜 Manuscrits originaux de Léonard'
+        ]
+    }
+};
 
 destinationCards.forEach(card => {
     const button = card.querySelector('.card-button');
     
+    if (!button) {
+        console.error('Bouton non trouvé pour la carte:', card);
+        return;
+    }
+    
     button.addEventListener('click', (e) => {
         e.stopPropagation();
         const destination = card.dataset.destination;
-        const destinationName = card.querySelector('.card-title').textContent;
         
         // Animation effect
         card.style.transform = 'scale(0.95)';
@@ -35,13 +134,89 @@ destinationCards.forEach(card => {
             card.style.transform = '';
         }, 200);
         
-        // Open chatbot with pre-filled message
-        openChatbotWithMessage(`Je suis intéressé(e) par la destination ${destinationName}`);
+        // Ouvrir le modal avec les détails
+        openDestinationModal(destination);
     });
 
     // Card hover effect enhancement
     card.addEventListener('mouseenter', () => {
         card.style.transition = 'all 0.3s ease';
+    });
+});
+
+// ===== Modal Destination =====
+function openDestinationModal(destination) {
+    const data = destinationsData[destination];
+    if (!data) {
+        console.error('Pas de données pour:', destination);
+        return;
+    }
+    
+    // Remplir le modal
+    document.getElementById('modal-title').textContent = data.title;
+    document.getElementById('modal-era').textContent = data.era;
+    document.getElementById('modal-duration').textContent = data.duration;
+    document.getElementById('modal-capacity').textContent = data.capacity;
+    document.getElementById('modal-price').textContent = data.price;
+    document.getElementById('modal-description').textContent = data.description;
+    
+    // Remplir les highlights
+    const highlightsList = document.getElementById('modal-highlights');
+    highlightsList.innerHTML = data.highlights.map(h => `<li>${h}</li>`).join('');
+    
+    // Stocker la destination pour le bouton réserver
+    document.getElementById('modal-reserve-btn').dataset.destination = destination;
+    
+    // Afficher le modal
+    destinationModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Bloquer le scroll
+    
+    // Announce to screen readers
+    const ariaAnnouncements = document.getElementById('aria-announcements');
+    if (ariaAnnouncements) {
+        ariaAnnouncements.textContent = `Fenêtre modale ouverte : ${data.title}`;
+    }
+    
+    // Focus on modal for keyboard users
+    destinationModal.focus();
+}
+
+function closeDestinationModal() {
+    destinationModal.classList.remove('active');
+    document.body.style.overflow = ''; // Réactiver le scroll
+    
+    // Announce to screen readers
+    const ariaAnnouncements = document.getElementById('aria-announcements');
+    if (ariaAnnouncements) {
+        ariaAnnouncements.textContent = 'Fenêtre modale fermée';
+    }
+}
+
+// Fermer le modal
+modalClose.addEventListener('click', closeDestinationModal);
+
+// Fermer en cliquant en dehors
+destinationModal.addEventListener('click', (e) => {
+    if (e.target === destinationModal) {
+        closeDestinationModal();
+    }
+});
+
+// Bouton réserver dans le modal
+document.getElementById('modal-reserve-btn').addEventListener('click', function() {
+    const destination = this.dataset.destination;
+    const destinationSelect = document.getElementById('destination');
+    
+    // Pré-remplir le formulaire
+    destinationSelect.value = destination;
+    
+    // Fermer le modal
+    closeDestinationModal();
+    
+    // Scroller vers le formulaire
+    document.querySelector('.reservation').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
     });
 });
 

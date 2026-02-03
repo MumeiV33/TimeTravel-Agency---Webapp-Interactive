@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronos Luxury Travel - Agence de Voyage Temporel</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./chatbot-local.js" defer></script>
+    <script src="./video-loader.js" defer></script>
+    <script src="./script.js" defer></script>
 </head>
 <body>
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    <!-- ARIA live region for announcements -->
+    <div aria-live="polite" aria-atomic="true" class="sr-only" id="aria-announcements"></div>
+    
     <!-- Header / Navigation -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="container">
             <div class="logo">
                 <h1>⧗ Chronos Luxury Travel</h1>
             </div>
-            <nav class="nav">
+            <nav class="nav" role="navigation" aria-label="Navigation principale">
                 <a href="#hero">Accueil</a>
                 <a href="#about">L'Agence</a>
                 <a href="#destinations">Destinations</a>
@@ -23,12 +32,12 @@
     </header>
 
     <!-- Hero Section avec Animation -->
-    <section id="hero" class="hero">
+    <section id="hero" class="hero" role="region" aria-label="Bannière principale">
         <div class="hero-background">
-            <!-- Video Background - Remplacez par votre vidéo -->
-            <video class="hero-video" autoplay muted loop playsinline>
-                <source src="assets/hero-video.mp4" type="video/mp4">
-                <source src="assets/hero-video.webm" type="video/webm">
+            <!-- Video Background - Image de fallback incluse -->
+            <video class="hero-video" autoplay muted loop playsinline poster="./assets/paris-1889.jpg" preload="auto" id="hero-video" aria-label="Vidéo d'ambiance montrant Paris en 1889 et la Tour Eiffel">
+                <source src="./assets/hero-video.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas les vidéos HTML5
             </video>
             <div class="video-overlay"></div>
             <div class="animated-background"></div>
@@ -36,19 +45,20 @@
         <div class="hero-content">
             <h2 class="hero-title">Voyagez à Travers le Temps</h2>
             <p class="hero-subtitle">Explorez les époques les plus fascinantes de l'histoire avec le luxe et la sécurité que vous méritez</p>
-            <button class="cta-button">Découvrir nos destinations</button>
+            <button class="cta-button" aria-label="Découvrir nos destinations de voyage temporel">Découvrir nos destinations</button>
         </div>
-        <div class="scroll-indicator">
-            <span>⌄</span>
-        </div>
+        <button class="scroll-indicator" aria-label="Défiler vers le bas pour en savoir plus">
+            <span aria-hidden="true">⌄</span>
+        </button>
     </section>
 
     <!-- Section Présentation de l'Agence -->
-    <section id="about" class="about">
+    <main id="main-content">
+    <section id="about" class="about" role="region" aria-labelledby="about-title">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="section-title">L'Excellence Temporelle</h2>
+                    <h2 class="section-title" id="about-title">L'Excellence Temporelle</h2>
                     <p class="about-description">
                         Fondée en 2095, <strong>Chronos Luxury Travel</strong> est la première agence de voyage temporel certifiée au monde. 
                         Nous offrons des expériences uniques et sécurisées dans les périodes les plus remarquables de l'histoire humaine.
@@ -57,9 +67,9 @@
                         Nos guides temporels experts, formés aux Académies Chronologiques de Cambridge et Tokyo, 
                         vous accompagnent dans chaque voyage pour une immersion totale et sans risque.
                     </p>
-                    <div class="about-stats">
+                    <div class="about-stats" role="group" aria-label="Statistiques de l'agence">
                         <div class="stat">
-                            <span class="stat-number">10,000+</span>
+                            <span class="stat-number" aria-label="Plus de 10 000">10,000+</span>
                             <span class="stat-label">Voyageurs</span>
                         </div>
                         <div class="stat">
@@ -67,14 +77,14 @@
                             <span class="stat-label">Destinations</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">100%</span>
+                            <span class="stat-number" aria-label="100 pourcent">100%</span>
                             <span class="stat-label">Sécurité</span>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <div class="image-placeholder">
-                        <span class="image-icon">🕰️</span>
+                    <div class="image-placeholder" role="img" aria-label="Illustration d'une horloge antique symbolisant le voyage temporel">
+                        <span class="image-icon" aria-hidden="true">🕰️</span>
                     </div>
                 </div>
             </div>
@@ -82,94 +92,122 @@
     </section>
 
     <!-- Galerie de Destinations -->
-    <section id="destinations" class="destinations">
+    <section id="destinations" class="destinations" role="region" aria-labelledby="destinations-title">
         <div class="container">
-            <h2 class="section-title">Destinations Populaires</h2>
+            <h2 class="section-title" id="destinations-title">Destinations Populaires</h2>
             <p class="section-subtitle">Sélectionnez votre prochaine aventure temporelle</p>
             
             <div class="destinations-grid">
                 <!-- Card Paris 1889 -->
-                <div class="destination-card" data-destination="paris">
+                <article class="destination-card" data-destination="paris" aria-labelledby="paris-title">
                     <div class="card-image">
-                        <!-- Remplacez par votre image Paris 1889 -->
-                        <img src="assets/paris-1889.jpg" alt="Paris 1889 Tour Eiffel" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="card-icon"></div>
+                        <img src="assets/paris-1889.jpg" alt="Vue panoramique de Paris en 1889 avec la Tour Eiffel nouvellement construite et l'Exposition Universelle" loading="lazy">
+                        <div class="image-overlay" aria-hidden="true"></div>
+                        <div class="card-icon" aria-hidden="true"></div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Paris 1889</h3>
+                        <h3 class="card-title" id="paris-title">Paris 1889</h3>
                         <p class="card-era">Belle Époque</p>
                         <p class="card-description">
                             Assistez à l'inauguration de la Tour Eiffel lors de l'Exposition Universelle. 
                             Promenez-vous dans les rues pavées de Montmartre et rencontrez les impressionnistes 
                             dans leurs ateliers parisiens.
                         </p>
-                        <div class="card-details">
-                            <span class="detail-item">⏱️ 5 jours</span>
-                            <span class="detail-item">👥 Max 8 personnes</span>
+                        <div class="card-details" role="list" aria-label="Informations du voyage">
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">⏱️</span> 5 jours</span>
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">👥</span> Max 8 personnes</span>
                         </div>
-                        <button class="card-button">Explorer</button>
+                        <button class="card-button" aria-label="Explorer la destination Paris 1889">Explorer</button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Card Crétacé -->
-                <div class="destination-card" data-destination="cretaceous">
+                <article class="destination-card" data-destination="cretaceous" aria-labelledby="cretaceous-title">
                     <div class="card-image">
-                        <!-- Remplacez par votre image Crétacé -->
-                        <img src="assets/cretaceous.jpg" alt="Période Crétacé Dinosaures" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="card-icon"></div>
+                        <img src="assets/cretaceous.jpg" alt="Paysage préhistorique de la période Crétacé avec dinosaures, végétation luxuriante et volcans" loading="lazy">
+                        <div class="image-overlay" aria-hidden="true"></div>
+                        <div class="card-icon" aria-hidden="true"></div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Période Crétacé</h3>
+                        <h3 class="card-title" id="cretaceous-title">Période Crétacé</h3>
                         <p class="card-era">-66 Millions d'années</p>
                         <p class="card-description">
                             Observez les dinosaures dans leur habitat naturel depuis nos capsules de protection 
                             invisibles. Admirez les Tyrannosaures, Tricératops et autres géants préhistoriques 
                             en toute sécurité.
                         </p>
-                        <div class="card-details">
-                            <span class="detail-item">⏱️ 7 jours</span>
-                            <span class="detail-item">👥 Max 6 personnes</span>
+                        <div class="card-details" role="list" aria-label="Informations du voyage">
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">⏱️</span> 7 jours</span>
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">👥</span> Max 6 personnes</span>
                         </div>
-                        <button class="card-button">Explorer</button>
+                        <button class="card-button" aria-label="Explorer la destination Période Crétacé">Explorer</button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Card Florence 1504 -->
-                <div class="destination-card" data-destination="florence">
+                <article class="destination-card" data-destination="florence" aria-labelledby="florence-title">
                     <div class="card-image">
-                        <!-- Remplacez par votre image Florence 1504 -->
-                        <img src="assets/florence-1504.jpg" alt="Florence 1504 Renaissance" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="card-icon"></div>
+                        <img src="assets/florence-1504.jpg" alt="Florence pendant la Renaissance en 1504, avec la cathédrale Santa Maria del Fiore et les ateliers d'artistes" loading="lazy">
+                        <div class="image-overlay" aria-hidden="true"></div>
+                        <div class="card-icon" aria-hidden="true"></div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Florence 1504</h3>
+                        <h3 class="card-title" id="florence-title">Florence 1504</h3>
                         <p class="card-era">Renaissance Italienne</p>
                         <p class="card-description">
                             Rencontrez Michel-Ange alors qu'il sculpte le David et Léonard de Vinci travaillant 
                             sur La Joconde. Découvrez l'effervescence artistique et intellectuelle de la 
                             Renaissance à son apogée.
                         </p>
-                        <div class="card-details">
-                            <span class="detail-item">⏱️ 6 jours</span>
-                            <span class="detail-item">👥 Max 10 personnes</span>
+                        <div class="card-details" role="list" aria-label="Informations du voyage">
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">⏱️</span> 6 jours</span>
+                            <span class="detail-item" role="listitem"><span aria-hidden="true">👥</span> Max 10 personnes</span>
                         </div>
-                        <button class="card-button">Explorer</button>
+                        <button class="card-button" aria-label="Explorer la destination Florence 1504">Explorer</button>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
+    <!-- Modal Détails Destination -->
+    <div id="destination-modal" class="destination-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Fermer la fenêtre modale">&times;</button>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-era" id="modal-era"></p>
+                <div class="modal-details" role="list" aria-label="Détails du voyage">
+                    <div class="modal-detail-item" role="listitem">
+                        <span class="modal-icon" aria-hidden="true">⏱️</span>
+                        <span id="modal-duration"></span>
+                    </div>
+                    <div class="modal-detail-item" role="listitem">
+                        <span class="modal-icon" aria-hidden="true">👥</span>
+                        <span id="modal-capacity"></span>
+                    </div>
+                    <div class="modal-detail-item" role="listitem">
+                        <span class="modal-icon" aria-hidden="true">💰</span>
+                        <span id="modal-price"></span>
+                    </div>
+                </div>
+                <p class="modal-description" id="modal-description"></p>
+                <div class="modal-highlights">
+                    <h3>Points forts</h3>
+                    <ul id="modal-highlights"></ul>
+                </div>
+                <button class="modal-reserve-btn" id="modal-reserve-btn" aria-label="Réserver cette destination et aller au formulaire">Réserver cette destination</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Section Réservation -->
-    <section id="contact" class="reservation">
+    <section id="contact" class="reservation" role="region" aria-labelledby="reservation-title">
         <div class="container">
-            <h2 class="section-title">Réservez Votre Voyage Temporel</h2>
+            <h2 class="section-title" id="reservation-title">Réservez Votre Voyage Temporel</h2>
             <p class="section-subtitle">Remplissez ce formulaire et notre équipe vous contactera sous 24h</p>
             
-            <form class="reservation-form" id="reservation-form">
+            <form class="reservation-form" id="reservation-form" aria-labelledby="reservation-title">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Nom complet *</label>
@@ -235,7 +273,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -244,8 +282,8 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>Email: contact@chronosluxury.time</p>
-                    <p>Téléphone: +33 (0)1 TIME-TRAVEL</p>
+                    <p><a href="mailto:contact@chronosluxury.time" aria-label="Nous contacter par email">Email: contact@chronosluxury.time</a></p>
+                    <p><a href="tel:+33012345678" aria-label="Nous appeler">Téléphone: +33 (0)1 TIME-TRAVEL</a></p>
                 </div>
                 <div class="footer-section">
                     <h4>Certifications</h4>
@@ -351,11 +389,14 @@
     </div>
 
     <!-- Chatbot Toggle Button -->
-    <button class="chatbot-toggle" id="toggle-chat">
-        <span class="chat-icon">💬</span>
+    <button class="chatbot-toggle" id="toggle-chat" aria-label="Ouvrir le chatbot d'assistance">
+        <span class="chat-icon" aria-hidden="true">💬</span>
     </button>
-
-    <script src="chatbot-local.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Accessibility Toggle Button -->
+    <button class="accessibility-toggle" id="accessibility-toggle" aria-label="Activer le mode contraste élevé" aria-pressed="false">
+        <span class="accessibility-icon" aria-hidden="true">♿</span>
+    </button>
+    </main>
 </body>
 </html>

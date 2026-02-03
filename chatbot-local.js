@@ -26,7 +26,7 @@ const CHATBOT_KNOWLEDGE_BASE = [
     
     // Questions générales sur destinations
     {
-        keywords: ['destination', 'où', 'quand', 'lequel', 'quel'],
+        keywords: ['destination', 'où', 'quand', 'lequel', 'aller'],
         response: 'Nous proposons 3 destinations magnifiques : Paris 1889 (Belle Époque) 🗼, le Crétacé (Dinosaures) 🦕, ou Florence 1504 (Renaissance) 🎨. Quelle époque vous fascine ?',
         priority: 8
     },

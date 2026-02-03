@@ -7,7 +7,7 @@ Une webapp interactive et immersive pour une agence de voyage temporel de luxe, 
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-## 📋 Sommaire
+## Sommaire
 
 - [Aperçu](#aperçu)
 - [Fonctionnalités](#fonctionnalités)
@@ -20,25 +20,28 @@ Une webapp interactive et immersive pour une agence de voyage temporel de luxe, 
 - [Améliorations & Optimisations](#améliorations--optimisations)
 - [Crédits](#crédits)
 
-## 🎯 Aperçu
+## Aperçu
 
 Chronos Luxury Travel est une webapp interactive et immersive présentant une agence fictive de voyage temporel premium. Le projet démontre les capacités du web moderne en HTML5/CSS3/JavaScript vanilla, sans dépendances externes, avec une architecture responsive et performante.
 
-### 🌍 Destinations Proposées
+### Destinations Proposées
 
 1. **Paris 1889** - Belle Époque (5j, 8 max, 50 000€/pers)
 2. **Crétacé** - Préhistoire (7j, 6 max, 120 000€/pers)
 3. **Florence 1504** - Renaissance (6j, 10 max, 75 000€/pers)
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 - ✅ **Chatbot local intelligent** avec NLP côté client
 - ✅ **Validation formulaire** : limite groupe/destination et dates antérieures
 - ✅ **Détection de groupe** : recommande destinations selon nombre de personnes
 - ✅ **FAQ automatisée** : boutons de questions pré-remplies
+- ✅ **Modal destinations** : détails complets + bouton réserver pré-rempli
 - ✅ **Animations fluides** : CSS keyframes et transitions
 - ✅ **Design responsive** : mobile-first, breakpoints 480px et 768px
 - ✅ **Thème premium** : variables CSS pour palette or/noir
+- ✅ **Accessibilité** : ARIA, skip link, focus visible
+- ✅ **Mode contraste élevé** : bouton ♿, persistance localStorage
 
 ### Fonctionnalités de Réservation
 - ✅ Validation : `validateReservation(formData)` vérifie capacités max
@@ -47,7 +50,7 @@ Chronos Luxury Travel est une webapp interactive et immersive présentant une ag
 - ✅ localStorage : persist optionnelle des données
 - ✅ Feedback visuel : messages de confirmation animés
 
-## 🛠️ Technologies Utilisées
+## Technologies Utilisées
 
 ### Frontend
 - **HTML5** - Structure sémantique
@@ -59,14 +62,28 @@ Chronos Luxury Travel est une webapp interactive et immersive présentant une ag
 - Performance maximale
 - Taille totale : ~50 KB minifiée
 
-## 👥 Équipe
+### Prompt initial :
+
+```
+Créez une maquette pour une webapp d'agence de voyage temporel de luxe. Le site doit inclure :
+1. Une section hero avec une vidéo ou animation de fond et une introduction à l'agence.
+2. Une section de présentation de l'agence.
+3. Une galerie de destinations avec trois cartes interactives pour Paris 1889, Crétacé, et Florence 1504, chacune avec une image et une description.
+4. Un widget de chatbot intégré en bas à droite de la page.
+5. Un design élégant avec un thème sombre et des accents dorés pour un sentiment premium.
+Le site doit être responsive et mobile-first.
+
+Utilisez HTML, CSS et JavaScript pour le développement.
+```
+
+## Équipe
 
 - **Minh Dung KIEU** — Chef de projet / UX
 - **Valentin FALQUET** — Front-end / UI
 - **Fabien CHAN PIU** — Intégration & interactions
 - **Estéban COSTA** — Contenus & tests
 
-## 🧩 Répartition du travail
+## Répartition du travail
 
 Le travail a été réparti à parts égales entre 4 personnes :
 
@@ -75,15 +92,17 @@ Le travail a été réparti à parts égales entre 4 personnes :
 3. **Fabien CHAN PIU** : logique JavaScript, chatbot local, animations et interactions
 4. **Estéban COSTA** : contenus, assets, validations, tests et documentation
 
-## 🏗️ Architecture Technique
+## Architecture Technique
 
 ### Organisation des fichiers
 
 ```
-index.html          → Structure sémantique HTML5, 359 lignes
-styles.css          → Variables CSS, 1366 lignes, 100% responsive
-script.js           → Logique métier, 572 lignes
-chatbot-local.js    → Base de connaissances NLP, 203 lignes
+index.html          → Structure sémantique HTML5
+styles.css          → Design system, responsive & accessibilité
+script.js           → Logique métier, modal & interactions
+chatbot-local.js    → Base de connaissances NLP
+video-loader.js     → Gestion vidéo (fade/blur/ready)
+ACCESSIBILITE.md    → Guide d’accessibilité
 ```
 
 ### Design System (CSS Variables)
@@ -104,7 +123,7 @@ chatbot-local.js    → Base de connaissances NLP, 203 lignes
 - **Mobile** : < 768px (mobile-first)
 - **Mini** : < 480px
 
-## 🧠 Fonctionnement Détaillé
+## Fonctionnement Détaillé
 
 ### 1. Chatbot Local (NLP Intelligent)
 
@@ -173,7 +192,8 @@ if (selectedDate < today) {
 
 **Destination Cards** :
 - Hover : transform scale et gradient
-- Click : ouvre chatbot avec message pré-rempli
+- Click : ouvre un modal détaillé (prix, durée, capacité, points forts)
+- CTA modal : pré-remplit le formulaire et scroll automatique
 - Transition : smooth 0.3s ease
 
 **Form Feedback** :
@@ -194,7 +214,14 @@ anchor.addEventListener('click', (e) => {
 });
 ```
 
-## 📊 Améliorations & Optimisations
+### 5. Accessibilité & Contraste Élevé
+
+- **Skip link** : accès rapide au contenu principal via Tab
+- **Landmarks ARIA** : `role="banner"`, `role="navigation"`, `role="contentinfo"`, `role="dialog"`
+- **Lecteurs d’écran** : zones `aria-live` pour annoncer les changements d’état
+- **Mode contraste élevé** : bouton dédié, thème WCAG AAA, persistant via localStorage
+
+## Améliorations & Optimisations
 
 ### Performance
 - **Zéro dépendances** : aucun npm/CDN à charger
@@ -206,7 +233,8 @@ anchor.addEventListener('click', (e) => {
 - **Validation préventive** : erreurs avant submission
 - **Feedback immédiat** : typing indicator, scroll auto
 - **Mobile-first** : testé sur tous les breakpoints
-- **Accessibilité** : sémantique HTML5, labels, alt text
+- **Accessibilité** : landmarks ARIA, labels, alt détaillés
+- **Contraste élevé** : thème WCAG AAA, focus renforcé
 
 ### Code Quality
 - **Commentaires** : logique complexe bien documentée
@@ -220,7 +248,7 @@ anchor.addEventListener('click', (e) => {
 - [ ] Multilangue (FR/EN/ES)
 - [ ] WebStorage pour historique complet
 
-## 📁 Structure du Projet
+## Structure du Projet
 
 ```
 TimeTravel-Agency---Webapp-Interactive/
@@ -229,14 +257,16 @@ TimeTravel-Agency---Webapp-Interactive/
 ├── styles.css              # Design system & responsive
 ├── script.js               # Logique métier & interactions
 ├── chatbot-local.js        # NLP & base de connaissances
+├── video-loader.js         # Gestion vidéo (fade/blur/ready)
+├── ACCESSIBILITE.md         # Guide accessibilité & tests
 └── assets/                 # Médias (vidéo + images)
 ```
 
-## 📄 Licence
+## Licence
 
 Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, le modifier et le distribuer.
 
-## 🙏 Crédits & Remerciements
+## Crédits & Remerciements
 
 ### Technologies Open Source
 - [MDN Web Docs](https://developer.mozilla.org/) - Documentation et ressources
