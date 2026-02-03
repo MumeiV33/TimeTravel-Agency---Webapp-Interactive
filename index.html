@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos Luxury Travel - Agence de Voyage Temporel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>⧗ Chronos Luxury Travel</h1>
+            </div>
+            <nav class="nav">
+                <a href="#hero">Accueil</a>
+                <a href="#about">L'Agence</a>
+                <a href="#destinations">Destinations</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section avec Animation -->
+    <section id="hero" class="hero">
+        <div class="hero-background">
+            <!-- Video Background - Remplacez par votre vidéo -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="assets/hero-video.mp4" type="video/mp4">
+                <source src="assets/hero-video.webm" type="video/webm">
+            </video>
+            <div class="video-overlay"></div>
+            <div class="animated-background"></div>
+        </div>
+        <div class="hero-content">
+            <h2 class="hero-title">Voyagez à Travers le Temps</h2>
+            <p class="hero-subtitle">Explorez les époques les plus fascinantes de l'histoire avec le luxe et la sécurité que vous méritez</p>
+            <button class="cta-button">Découvrir nos destinations</button>
+        </div>
+        <div class="scroll-indicator">
+            <span>⌄</span>
+        </div>
+    </section>
+
+    <!-- Section Présentation de l'Agence -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">L'Excellence Temporelle</h2>
+                    <p class="about-description">
+                        Fondée en 2095, <strong>Chronos Luxury Travel</strong> est la première agence de voyage temporel certifiée au monde. 
+                        Nous offrons des expériences uniques et sécurisées dans les périodes les plus remarquables de l'histoire humaine.
+                    </p>
+                    <p class="about-description">
+                        Nos guides temporels experts, formés aux Académies Chronologiques de Cambridge et Tokyo, 
+                        vous accompagnent dans chaque voyage pour une immersion totale et sans risque.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">Voyageurs</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">127</span>
+                            <span class="stat-label">Destinations</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Sécurité</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <span class="image-icon">🕰️</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie de Destinations -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <h2 class="section-title">Destinations Populaires</h2>
+            <p class="section-subtitle">Sélectionnez votre prochaine aventure temporelle</p>
+            
+            <div class="destinations-grid">
+                <!-- Card Paris 1889 -->
+                <div class="destination-card" data-destination="paris">
+                    <div class="card-image">
+                        <!-- Remplacez par votre image Paris 1889 -->
+                        <img src="assets/paris-1889.jpg" alt="Paris 1889 Tour Eiffel" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="card-icon"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Paris 1889</h3>
+                        <p class="card-era">Belle Époque</p>
+                        <p class="card-description">
+                            Assistez à l'inauguration de la Tour Eiffel lors de l'Exposition Universelle. 
+                            Promenez-vous dans les rues pavées de Montmartre et rencontrez les impressionnistes 
+                            dans leurs ateliers parisiens.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-item">⏱️ 5 jours</span>
+                            <span class="detail-item">👥 Max 8 personnes</span>
+                        </div>
+                        <button class="card-button">Explorer</button>
+                    </div>
+                </div>
+
+                <!-- Card Crétacé -->
+                <div class="destination-card" data-destination="cretaceous">
+                    <div class="card-image">
+                        <!-- Remplacez par votre image Crétacé -->
+                        <img src="assets/cretaceous.jpg" alt="Période Crétacé Dinosaures" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="card-icon"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Période Crétacé</h3>
+                        <p class="card-era">-66 Millions d'années</p>
+                        <p class="card-description">
+                            Observez les dinosaures dans leur habitat naturel depuis nos capsules de protection 
+                            invisibles. Admirez les Tyrannosaures, Tricératops et autres géants préhistoriques 
+                            en toute sécurité.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-item">⏱️ 7 jours</span>
+                            <span class="detail-item">👥 Max 6 personnes</span>
+                        </div>
+                        <button class="card-button">Explorer</button>
+                    </div>
+                </div>
+
+                <!-- Card Florence 1504 -->
+                <div class="destination-card" data-destination="florence">
+                    <div class="card-image">
+                        <!-- Remplacez par votre image Florence 1504 -->
+                        <img src="assets/florence-1504.jpg" alt="Florence 1504 Renaissance" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="card-icon"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Florence 1504</h3>
+                        <p class="card-era">Renaissance Italienne</p>
+                        <p class="card-description">
+                            Rencontrez Michel-Ange alors qu'il sculpte le David et Léonard de Vinci travaillant 
+                            sur La Joconde. Découvrez l'effervescence artistique et intellectuelle de la 
+                            Renaissance à son apogée.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-item">⏱️ 6 jours</span>
+                            <span class="detail-item">👥 Max 10 personnes</span>
+                        </div>
+                        <button class="card-button">Explorer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Réservation -->
+    <section id="contact" class="reservation">
+        <div class="container">
+            <h2 class="section-title">Réservez Votre Voyage Temporel</h2>
+            <p class="section-subtitle">Remplissez ce formulaire et notre équipe vous contactera sous 24h</p>
+            
+            <form class="reservation-form" id="reservation-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination *</label>
+                        <select id="destination" name="destination" required>
+                            <option value="">Sélectionnez une destination</option>
+                            <option value="paris">Paris 1889 - Belle Époque</option>
+                            <option value="cretaceous">Période Crétacé</option>
+                            <option value="florence">Florence 1504 - Renaissance</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="travelers">Nombre de voyageurs *</label>
+                        <input type="number" id="travelers" name="travelers" min="1" max="10" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date de départ souhaitée</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="message">Message / Questions</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de vos attentes, questions ou besoins spécifiques..."></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span>Je souhaite recevoir les offres exclusives de Chronos Luxury Travel</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-button">Envoyer ma demande</button>
+                <p class="form-notice">* Champs obligatoires</p>
+            </form>
+            
+            <div class="success-message" id="success-message">
+                <div class="success-content">
+                    <span class="success-icon">✓</span>
+                    <h3>Demande envoyée avec succès !</h3>
+                    <p>Notre équipe vous contactera sous 24h pour finaliser votre voyage temporel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chronos Luxury Travel</h3>
+                    <p>L'excellence dans le voyage temporel depuis 2095</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: contact@chronosluxury.time</p>
+                    <p>Téléphone: +33 (0)1 TIME-TRAVEL</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Certifications</h4>
+                    <p>Licence Temporelle n°2095-CTB-001</p>
+                    <p>Membre de l'Association Internationale des Voyages Temporels</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2095-2026 Chronos Luxury Travel. Tous droits réservés à travers le temps.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-header-content">
+                <span class="chatbot-icon">💬</span>
+                <span class="chatbot-title">Assistant Temporel</span>
+            </div>
+            <button class="chatbot-minimize" id="minimize-chat">−</button>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="chatbot-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Bonjour ! 👋 Je suis votre assistant temporel. Fonctionne 100% hors ligne, aucun compte nécessaire ! 🚀 Posez-moi des questions sur nos destinations, tarifs, sécurité... Je suis ici pour vous aider ! 🕰️
+                </div>
+            </div>
+            <div class="quick-replies" aria-label="Questions fréquentes">
+                <button class="quick-reply" data-message="Quels sont vos tarifs ?">💰 Tarifs</button>
+                <button class="quick-reply" data-message="Quelle est la durée des voyages ?">⏱️ Durée</button>
+                <button class="quick-reply" data-message="Le voyage est-il sécurisé ?">🛡️ Sécurité</button>
+                <button class="quick-reply" data-message="Quelles destinations proposez-vous ?">🌍 Destinations</button>
+                <button class="quick-reply" data-message="Je veux réserver un voyage">📝 Réserver</button>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chat-input" placeholder="Posez votre question...">
+                <button class="chatbot-send" id="send-message">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal removed - chatbot works 100% locally -->
+    <div class="api-config-modal" id="api-config-modal" style="display: none !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Configuration Optionnelle</h3>
+                <button class="modal-close" id="close-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-info">
+                    ✅ <strong>Le chatbot fonctionne PARFAITEMENT en mode local (gratuit, hors ligne).</strong>
+                </p>
+                
+                <p style="color: var(--text-secondary); margin: 1rem 0;">
+                    <strong>Optionnel :</strong> Si vous voulez des réponses IA plus puissantes et personnalisées, vous pouvez ajouter une clé API Groq (100% gratuite, 0€).
+                </p>
+                
+                <div class="setup-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div>
+                            <strong>Créer un compte Groq</strong>
+                            <p><a href="https://console.groq.com" target="_blank">console.groq.com</a> (gratuit)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div>
+                            <strong>Générer une clé API</strong>
+                            <p>2 minutes max</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div>
+                            <strong>Coller ici</strong>
+                            <p>Et c'est prêt !</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="api-key-input">Clé API Groq (optionnelle)</label>
+                    <input type="password" id="api-key-input" class="api-key-input" placeholder="gsk_...">
+                    <button type="button" id="show-api-key" class="toggle-password">👁️ Afficher</button>
+                </div>
+                
+                <div class="modal-warning">
+                    <strong>💡 Avantages du mode IA Groq :</strong>
+                    <ul>
+                        <li>Réponses plus naturelles et contextuelles</li>
+                        <li>Comprend mieux les questions complexes</li>
+                        <li>Réponses personnalisées</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="skip-api">Continuer (mode local)</button>
+                <button type="button" class="btn-primary" id="save-api">Enregistrer la clé</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="toggle-chat">
+        <span class="chat-icon">💬</span>
+    </button>
+
+    <script src="chatbot-local.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
